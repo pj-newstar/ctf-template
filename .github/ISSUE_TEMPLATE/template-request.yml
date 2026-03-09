@@ -1,0 +1,27 @@
+name: Template Request
+description: Suggest a new CTF challenge template
+title: "[Template Request] "
+labels: ["enhancement", "template-request"]
+body:
+  - type: input
+    id: template-name
+    attributes:
+      label: Template Name
+      description: e.g. nc-file, web-php, crypto-remote
+      placeholder: my-template
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What would this template be used for? What should it include?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information, examples, or links
+    validations:
+      required: false
