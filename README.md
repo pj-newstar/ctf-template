@@ -13,11 +13,15 @@ Most challenges which requires participants using `nc` to visit, are suitable to
 
 If you want to add Proof of Work protection to your existing challenge, you can refer to [nc-file-pow](nc-file-pow/README.md) template. Or see [pj-newstar/proof-of-work](https://github.com/pj-newstar/proof-of-work).
 
-## Requesting a Template
+## Questions & Requests
 
 [Open an issue][request_a_template] to request a new template. Please provide as much detail as possible about the desired template, including the type of challenge, expected functionality, and any specific requirements.
 
+If you have any questions or need assistance, feel free to find existing solutions or ask in the [issue][repo_issue] or [discussion](repo_discussion) section. We welcome contributions and are happy to help you!
+
 [request_a_template]: https://github.com/pj-newstar/ctf-template/issues/new?template=template-request.yml
+[repo_issue]: https://github.com/pj-newstar/ctf-template/issues
+[repo_discussion]: https://github.com/pj-newstar/ctf-template/discussions
 
 ## Contributing
 

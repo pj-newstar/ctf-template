@@ -44,4 +44,4 @@ Each Dockerfile should be in minimal form, using a base image and installing onl
 - Document exposed ports and configuration options
 - Follow standard code formatting conventions
 
-Questions? Open an issue for discussion.
+Questions? Open an issue or create a discussion!
