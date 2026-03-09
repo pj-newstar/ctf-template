@@ -5,7 +5,7 @@ RUN apk update && apk add --no-cache gcc musl-dev
 COPY ./src /var/chal
 WORKDIR /var/chal
 
-RUN gcc -o ask ask.c \
+RUN gcc -o app ask.c \
     -fstack-protector-strong \
     -fstack-clash-protection \
     -D_FORTIFY_SOURCE=2 \
@@ -25,12 +25,12 @@ ENV FLAG=flag{test_flag}
 RUN apk update && apk add --no-cache coreutils socat
 
 # copy the compiled binary
-COPY --from=builder /var/chal/ask /var/chal/ask
-RUN chmod +x /var/chal/ask
+COPY --from=builder /var/chal/app /var/chal/app
+RUN chmod +x /var/chal/app
 
 WORKDIR /var/chal
 
-# CMD ["tcpserver", "-v", "-D", "-c", "50", "0", "1337", "/var/chal/ask"]
-CMD ["socat", "TCP4-LISTEN:1337,reuseaddr,fork", "EXEC:/var/chal/ask"]
+# CMD ["tcpserver", "-v", "-D", "-c", "50", "0", "1337", "/var/chal/app"]
+CMD ["socat", "TCP4-LISTEN:1337,reuseaddr,fork", "EXEC:/var/chal/app"]
 
 EXPOSE 1337
