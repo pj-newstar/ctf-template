@@ -2,9 +2,16 @@
 
 Basic netcat challenge template using Python.
 
+## Features
+
+- Netcat the port to interact with the challenge.
+- Hex decoding the output to get the flag.
+
 ## Configuration
 
-Modify your source code in [src/](src/) to implement your challenge logic. The flag is stored in the `FLAG` environment variable, which can be set in `docker-compose.yml`.
+FLAG represents in FLAG environment variable, which can be modified in [docker-compose.yml](docker-compose.yml).
+
+Modify your source code in [src/](src/) to implement your challenge logic.
 
 Modify [Dockerfile](Dockerfile) if you need to install additional dependencies, change entry script, or change python version.
 
