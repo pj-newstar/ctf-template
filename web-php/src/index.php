@@ -1,0 +1,1 @@
+<strong>Your flag is</strong> <?php echo getenv("FLAG"); ?>

@@ -1,0 +1,17 @@
+[package]
+name = "web_server"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8"
+tower-http = { version = "0.6", features = ["fs"] }
+tokio = { version = "1.0", features = ["full"] }
+rand = "0.9.0"
+tower = "0.5.2"
+
+[profile.release]
+# 优化编译选项（可选，但建议）
+opt-level = "s"  # 优化体积
+lto = true       # 整体优化
+debug = false    # 移除调试信息
