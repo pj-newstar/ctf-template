@@ -33,6 +33,8 @@ RUN apk update && apk add --no-cache coreutils socat
 COPY --from=builder /var/chal/ask /var/chal/ask
 RUN chmod +x /var/chal/ask
 
+WORKDIR /var/chal
+
 # CMD ["tcpserver", "-v", "-D", "-c", "50", "0", "1337", "/usr/local/bin/pow run 15360 -- /var/chal/ask"]
 CMD ["socat", "TCP4-LISTEN:1337,reuseaddr,fork", "EXEC:/usr/local/bin/pow run 15360 -- /var/chal/ask"]
 
