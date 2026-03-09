@@ -1,4 +1,4 @@
-# nc-file
+# nc-file-pow
 
 Basic netcat challenge template with Proof of Work (PoW) protection, compared to [nc-file](../nc-file/).
 
@@ -41,5 +41,5 @@ For more details about the `pow` binary, please refer to [pj-newstar/proof-of-wo
 
 ```bash
 docker compose up -d
-nc 127.0.0.1 1337
+nc 127.0.0.1 11337
 ```

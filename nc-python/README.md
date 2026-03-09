@@ -19,5 +19,5 @@ Modify [Dockerfile](Dockerfile) if you need to install additional dependencies, 
 
 ```bash
 docker compose up -d
-nc 127.0.0.1 1337
+nc 127.0.0.1 11337
 ```

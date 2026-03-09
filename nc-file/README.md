@@ -26,5 +26,5 @@ Modify the build stage in [Dockerfile](Dockerfile) to compile your source code i
 
 ```bash
 docker compose up -d
-nc 127.0.0.1 1337
+nc 127.0.0.1 11337
 ```
