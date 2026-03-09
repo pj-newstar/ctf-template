@@ -9,7 +9,7 @@ This repository stores template docker sources for CTF challenges.
 
 ### nc
 
-Most challenges which requires participants using `nc` to visit, are suitable to be implemented applying the templates started with `nc-`.
+Most challenges which requires participants using `nc` to visit, are suitable to be implemented applying the templates starting with `nc-`.
 
 If you want to add Proof of Work protection to your existing challenge, you can refer to [nc-file-pow](nc-file-pow/README.md) template. Or see [pj-newstar/proof-of-work](https://github.com/pj-newstar/proof-of-work).
 
@@ -25,7 +25,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribut
 
 ## Code of Conduct
 
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## License
 
