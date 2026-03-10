@@ -35,7 +35,9 @@ In most cases, you can simply run the following command to build the docker imag
 docker compose build
 ```
 
-Or you can run `docker build` command with the provided `Dockerfile`, according to the context definited in the `Dockerfile`.
+Or you can run `docker build` command, according to the context definited in the `Dockerfile`.
+
+You can download the template via [Release](https://github.com/pj-newstar/ctf-template/releases).
 
 ## Additional Notes
 
