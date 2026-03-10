@@ -1,7 +1,9 @@
-version: '3'
 services:
-  service:
-    build: .
+  challenge:
     image: ctf-web-php
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: flag{test_flag}
     ports:
       - "18080:80"

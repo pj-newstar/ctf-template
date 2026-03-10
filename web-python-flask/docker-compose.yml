@@ -1,9 +1,9 @@
-version: '3'
 services:
-  service:
-    build: .
+  challenge:
     image: ctf-web-python-flask
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: flag{test_flag}
     ports:
       - "8080:80"
-    environment:
-      - FLAG=flag{test_flag}

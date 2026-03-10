@@ -1,10 +1,9 @@
 services:
   challenge:
     image: ctf-nc-python:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: "flag{test_flag}"
     ports:
       - "11337:1337"
-    environment:
-      FLAG: "flag{this_is_a_sample_flag}"
