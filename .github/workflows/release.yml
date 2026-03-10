@@ -1,0 +1,114 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '_*/**'
+      - '.*/**'
+      - '.*'
+      - '*.md'
+      - 'LICENSE'
+    tags-ignore:
+      - "r/*"
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-artifacts:
+    name: Build
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.collect.outputs.dirs }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: chetan/git-restore-mtime-action@v2
+
+      - name: Collect
+        id: collect
+        run: |
+          dirs=$(find . -maxdepth 1 -type d ! -name '.*' ! -name '_*' -exec test -f {}/Dockerfile \; -print | sed 's|./||' | sort)
+          echo "Found directories:"
+          echo "$dirs"
+          echo "dirs<<EOF" >> $GITHUB_OUTPUT
+          echo "$dirs" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create zip archives
+        run: |
+          mkdir -p '${{ runner.temp }}/artifacts'
+          echo ::group::Creating zip archives for directories
+          while IFS= read -r dir; do
+            if [ -n "$dir" ] && [ -d "$dir" ]; then
+              echo "Creating archive for: $dir"
+              cd "$dir"
+              zip -9 -r '${{ runner.temp }}/artifacts/'"${dir}.zip" .
+              cd ..
+              hash=$(sha256sum '${{ runner.temp }}/artifacts/'"${dir}.zip" | awk '{print $1}')
+              echo "Created ${dir}.zip with sha256:$hash"
+              echo "sha256:${hash}  ${dir}.zip" >> '${{ runner.temp }}/artifacts/checksums.txt'
+            fi
+          done <<< "${{ steps.collect.outputs.dirs }}"
+          echo ::endgroup::
+
+          echo "Checksums:"
+          cat '${{ runner.temp }}/artifacts/checksums.txt'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: templates
+          path: "${{ runner.temp }}/artifacts/"
+
+  release-tag:
+    name: Release
+    needs: build-artifacts
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: templates
+          path: "${{ runner.temp }}/artifacts/"
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "${{ runner.temp }}/artifacts/*.zip"
+          body: "Automated release for *${{ github.ref_name }}*."
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
+  pre-release-branch:
+    name: Pre-release
+    needs: build-artifacts
+    if: startsWith(github.ref, 'refs/heads/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: templates
+          path: "${{ runner.temp }}/artifacts/"
+
+      - name: Upload to pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: "${{ runner.temp }}/artifacts/*.zip"
+          body: "Automated pre-release for *${{ github.ref_name }}*."
+          draft: false
+          prerelease: true
+          target_commitish: r/release
