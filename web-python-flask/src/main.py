@@ -3,7 +3,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-FLAG = os.getenv("flag", "flag{test_flag}")
+FLAG = os.getenv("FLAG", "flag{test_flag}")
 
 @app.route("/")
 def index():
