@@ -1,0 +1,9 @@
+version: '3'
+services:
+  service:
+    build: .
+    image: ctf-web-python-flask
+    ports:
+      - "8080:80"
+    environment:
+      - FLAG=flag{test_flag}
