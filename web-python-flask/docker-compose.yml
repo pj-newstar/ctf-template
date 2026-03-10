@@ -5,3 +5,5 @@ services:
     image: ctf-web-python-flask
     ports:
       - "5000:5000"
+    environment:
+      - FLAG=flag{test_flag}
