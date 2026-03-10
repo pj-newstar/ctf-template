@@ -1,4 +1,4 @@
-# web-php
+# web-python-flask
 
 Basic web challenge template using Python web framework Flask.
 
