@@ -16,6 +16,27 @@ You need a unix-like environment to run Docker, such as Linux, WSL2 on Windows, 
 
 You can also refer to [Tsinghua Open Source Mirror for Docker CE](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/) if you meet network issues when installing Docker.
 
+### How FLAG Presents
+
+In this project, FLAG is defaultly given by environment variable `FLAG` when the container starts.
+
+Many platforms inject the FLAG by the fixed environment variable. For example, [GZCTF](https://github.com/GZTimeWalker/GZCTF) injects the FLAG by `GZCTF_FLAG`. To fit the variety of CTF platforms, please change the environment variable name to others in both the challenge source and container starting command like the `docker-compose.yml` file.
+
+To present the FLAG in a file, you can refer to [_library/adapter](_library/adapter/).
+
+> [!TIP]
+> [_library/adapter](_library/adapter/) can also help you transfer the FLAG from an environment variable to another environment variable.
+
+### How to Use the Templates
+
+In most cases, you can simply run the following command to build the docker image of a template, in its directory:
+
+```bash
+docker compose build
+```
+
+Or you can run `docker build` command with the provided `Dockerfile`, according to the context definited in the `Dockerfile`.
+
 ## Additional Notes
 
 > [!Note]
