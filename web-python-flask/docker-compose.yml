@@ -1,0 +1,7 @@
+version: '3'
+services:
+  service:
+    build: .
+    image: ctf-web-python-flask
+    ports:
+      - "5000:5000"
