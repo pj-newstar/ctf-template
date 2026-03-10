@@ -1,9 +1,9 @@
 # Adapter
 
-This directory provides a `init.c`, it has the following behavior:
+This directory provides an [init.c](init.c), it has the following behavior:
 
 - Read the FLAG from the environment variable `FLAG` and unset it from the environment.
-- Write the FLAG to a file. Set the permission of the file if options specified.
+- Write the FLAG to a file or a new environment variable. Set the permission of the file if options specified.
 - Run the specified command (if any). If options specified, run with the specified user and HOME environment variable.
 
 ## Usage
@@ -38,14 +38,14 @@ Example usage:
 init -o:f /flag node server.js
 # write FLAG to GZCTF_FLAG environment, run as `ctf`
 init -o:e GZCTF_FLAG -u ctf -- /pwn
-# write GZCTF_FLAG to /flag with permission 444, run as `nobody`
+# write GZCTF_FLAG to /flag.txt with permission 444, run as `nobody`
 init -i:e GZCTF_FLAG -o:f /flag.txt -p 444 -u nobody -- python3 main.py
 ```
 
 Example of using in Dockerfile:
 
 ```Dockerfile
-FROM ghcr.io/pj-newstar/ctf-template/library/adapter:latest AS init
+FROM ghcr.io/pj-newstar/ctf-template/library/adapter:latest AS adapter
 
 FROM alpine:latest
 
@@ -53,6 +53,6 @@ COPY --from=init /init /init
 
 # ...
 
-ENTRYPOINT ["/init", "-p", "444", "-u", "ctf", "--"]
+ENTRYPOINT ["/init", "-o:f", "/flag", "-p", "444", "-u", "ctf", "--"]
 CMD ["python3", "main.py"]
 ```
