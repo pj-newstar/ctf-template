@@ -18,6 +18,14 @@ Modify build stage in [Dockerfile](Dockerfile) to compile your Rust source code 
 
 Copy other necessary files into the final image and configure the server to serve them.
 
+### Exposes
+
+The following port is exposed by the container:
+
+| Port | Protocol | Description |
+| ---- | -------- | ----------- |
+| 80   | TCP      | The port to the challenge HTTP server. |
+
 ## Usage
 
 ```bash

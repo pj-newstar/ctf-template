@@ -16,6 +16,14 @@ Modify files in `src/` to implement your challenge.
 
 If you want to start the development server instead of using Gunicorn, or use other WSGI server, you can change the `CMD` in [Dockerfile](Dockerfile).
 
+### Exposes
+
+The following port is exposed by the container:
+
+| Port | Protocol | Description |
+| ---- | -------- | ----------- |
+| 80   | TCP      | The port to the challenge WSGI server. |
+
 ## Usage
 
 ```bash

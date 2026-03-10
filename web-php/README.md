@@ -13,6 +13,14 @@ FLAG represents in FLAG environment variable, which can be modified in [docker-c
 
 Modify files in `src/` to implement your challenge.
 
+### Exposes
+
+The following port is exposed by the container:
+
+| Port | Protocol | Description |
+| ---- | -------- | ----------- |
+| 80   | TCP      | The port to the challenge web server. |
+
 ## Usage
 
 ```bash
